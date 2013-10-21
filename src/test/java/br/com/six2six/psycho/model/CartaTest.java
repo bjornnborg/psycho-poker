@@ -7,6 +7,7 @@ import static br.com.six2six.psycho.model.Naipe.Paus;
 import static br.com.six2six.psycho.model.ValorFace.As;
 import static br.com.six2six.psycho.model.ValorFace.Dois;
 import static br.com.six2six.psycho.model.ValorFace.Quatro;
+import static br.com.six2six.psycho.model.ValorFace.Sete;
 import static br.com.six2six.psycho.model.ValorFace.Tres;
 import static org.junit.Assert.assertEquals;
 
@@ -22,6 +23,18 @@ public class CartaTest {
 	public void exibirNomeCorreto() {
 		Carta asDeCopas = new Carta(As, Copas);
 		assertEquals("Ás de Copas", asDeCopas.toString());
+	}
+	
+	@Test
+	public void criarFromStringValida() {
+		Carta carta = Carta.from("7H");
+		assertEquals(Sete, carta.getValorFace());
+		assertEquals(Copas, carta.getNaipe());
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void criarFromStringInvalida() {
+		Carta.from("7U");
 	}
 	
 	@Test
