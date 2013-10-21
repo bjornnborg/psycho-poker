@@ -37,6 +37,16 @@ public class CartaTest {
 		Carta.from("7U");
 	}
 	
+	@Test(expected=IllegalArgumentException.class)
+	public void criarSemNaipe() {
+		new Carta(As, null);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void criarSemValor() {
+		new Carta(null, Copas);
+	}
+	
 	@Test
 	public void ordenarPorValorDeFace() {
 		

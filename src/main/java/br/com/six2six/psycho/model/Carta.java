@@ -14,6 +14,9 @@ public class Carta implements Comparable<Carta> {
 	private Naipe naipe;
 	
 	public Carta(ValorFace valorFace, Naipe naipe) {
+		if (valorFace == null || naipe == null) {
+			throw new IllegalArgumentException("Uma carta deve ter um valor e um naipe");
+		}
 		this.valorFace = valorFace;
 		this.naipe = naipe;
 	}
