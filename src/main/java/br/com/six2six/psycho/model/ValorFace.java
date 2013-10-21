@@ -21,7 +21,7 @@ public enum ValorFace {
 	Sete("7", 7),
 	Oito("8", 8),
 	Nove("9", 9),
-	Dez("10", 10),
+	Dez("T", 10),
 	Valete("J", 11),
 	Dama("Q", 12),
 	Rei("K", 13);
