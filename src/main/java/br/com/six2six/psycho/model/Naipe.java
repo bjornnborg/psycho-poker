@@ -5,7 +5,7 @@ import java.util.Map;
 
 public enum Naipe {
 	Copas("H"),
-	Paus("H"),
+	Paus("C"),
 	Espadas("S"),
 	Ouros("D");
 	
