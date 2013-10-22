@@ -1,7 +1,6 @@
 package br.com.six2six.psycho.model.mao.util;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -27,7 +26,7 @@ public class AgrupadorHelper {
 	}
 	
 	public static Map<Naipe, List<Carta>> agruparPorNaipe(Mao mao) {
-		Map<Naipe, List<Carta>> cartasAgrupadas = new HashMap<Naipe, List<Carta>>(); 
+		Map<Naipe, List<Carta>> cartasAgrupadas = new TreeMap<Naipe, List<Carta>>(); 
 		for(Carta carta : mao.getCartas()) {
 			List<Carta> cartas = cartasAgrupadas.get(carta.getNaipe());
 			if (cartas == null) {
