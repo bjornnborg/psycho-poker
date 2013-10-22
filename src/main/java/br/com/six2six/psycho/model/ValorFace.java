@@ -10,7 +10,7 @@ public enum ValorFace {
 	As("A", 14) {
 		@Override
 		public String toString() {
-			return "¡s";
+			return "√Ås";
 		}
 	},
 	Dois("2", 2),

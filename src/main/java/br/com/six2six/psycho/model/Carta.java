@@ -39,7 +39,7 @@ public class Carta implements Comparable<Carta> {
 		if (matcher.matches()) {
 			return new Carta(ValorFace.from(matcher.group(1)), Naipe.from(matcher.group(2)));
 		}
-		throw new IllegalArgumentException("Tupla inv·lida");
+		throw new IllegalArgumentException("Tupla inv√°lida");
 	}
 	
 	public static List<Carta> from(String... tupla) {
