@@ -1,5 +1,6 @@
 package br.com.six2six.psycho.model.mao;
 
+import java.util.Collections;
 import java.util.List;
 
 import lombok.Getter;
@@ -12,6 +13,7 @@ public class Mao {
 	
 	public Mao(List<Carta> cartas) {
 		this.cartas = cartas;
+		Collections.sort(cartas);
 	}
 	
 	
