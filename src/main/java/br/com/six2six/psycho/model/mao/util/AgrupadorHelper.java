@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import br.com.six2six.psycho.model.Carta;
-import br.com.six2six.psycho.model.Mao;
 import br.com.six2six.psycho.model.Naipe;
 import br.com.six2six.psycho.model.ValorFace;
+import br.com.six2six.psycho.model.mao.Mao;
 
 public class AgrupadorHelper {
 

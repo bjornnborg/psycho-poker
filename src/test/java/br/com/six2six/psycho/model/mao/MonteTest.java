@@ -1,4 +1,4 @@
-package br.com.six2six.psycho.model;
+package br.com.six2six.psycho.model.mao;
 
 import static br.com.six2six.psycho.model.Naipe.Copas;
 import static br.com.six2six.psycho.model.Naipe.Paus;
@@ -10,6 +10,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
+
+import br.com.six2six.psycho.model.Carta;
+import br.com.six2six.psycho.model.Monte;
 
 public class MonteTest {
 

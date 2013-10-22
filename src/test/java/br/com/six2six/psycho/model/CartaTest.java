@@ -22,7 +22,7 @@ public class CartaTest {
 	@Test
 	public void exibirNomeCorreto() {
 		Carta asDeCopas = new Carta(As, Copas);
-		assertEquals("¡s de Copas", asDeCopas.toString());
+		assertEquals("√Ås de Copas", asDeCopas.toString());
 	}
 	
 	@Test

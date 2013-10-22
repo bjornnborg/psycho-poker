@@ -8,7 +8,6 @@ import org.junit.Test;
 
 import br.com.six2six.psycho.model.Carta;
 import br.com.six2six.psycho.model.DadosAvaliacaoJogo;
-import br.com.six2six.psycho.model.Mao;
 
 public class AvaliadorParTest {
 	

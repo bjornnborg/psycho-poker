@@ -9,7 +9,6 @@ import java.util.Map;
 import br.com.six2six.psycho.model.AvaliadorMao;
 import br.com.six2six.psycho.model.Carta;
 import br.com.six2six.psycho.model.DadosAvaliacaoJogo;
-import br.com.six2six.psycho.model.Mao;
 import br.com.six2six.psycho.model.ValorFace;
 import br.com.six2six.psycho.model.mao.util.AgrupadorHelper;
 

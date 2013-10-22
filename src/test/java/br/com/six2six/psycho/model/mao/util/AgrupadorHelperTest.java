@@ -11,8 +11,8 @@ import java.util.Map;
 import org.junit.Test;
 
 import br.com.six2six.psycho.model.Carta;
-import br.com.six2six.psycho.model.Mao;
 import br.com.six2six.psycho.model.ValorFace;
+import br.com.six2six.psycho.model.mao.Mao;
 
 public class AgrupadorHelperTest {
 
