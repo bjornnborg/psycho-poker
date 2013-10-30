@@ -6,7 +6,6 @@ import static br.com.six2six.psycho.model.ValorFace.As;
 import static br.com.six2six.psycho.model.ValorFace.Cinco;
 import static org.junit.Assert.assertEquals;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
@@ -19,17 +18,16 @@ public class MonteTest {
 	@Test
 	public void deveTrocarCartaPelaPrimeiraDoMonte() {
 		Monte monte = Monte.from("AH", "5C", "3D", "3S", "8H");
-		Carta tresPaus = Carta.from("3C");
-		Carta novaCarta = monte.trocar(tresPaus);
-		assertEquals(As, novaCarta.getValorFace());
-		assertEquals(Copas, novaCarta.getNaipe());
+		List<Carta> novasCartas = monte.trocar(1);
+		assertEquals(As, novasCartas.get(0).getValorFace());
+		assertEquals(Copas, novasCartas.get(0).getNaipe());
 	}
 	
 	@Test
 	public void deveTrocarSequencialmente() {
 		Monte monte = Monte.from("AH", "5C", "3D", "3S", "8H");
 		
-		List<Carta> cartas = monte.trocar(Arrays.asList(Carta.from("3C"), Carta.from("8S")));
+		List<Carta> cartas = monte.trocar(2);
 		
 		assertEquals(2, cartas.size());
 		assertEquals(As, cartas.get(0).getValorFace());

@@ -9,27 +9,16 @@ import lombok.Getter;
 public class Monte {
 
 	private List<Carta> cartas;
-	private List<Carta> cartasTrocadas;
 	
 	public Monte(List<Carta> cartas) {
 		if (cartas.size() != 5) {
 			throw new IllegalArgumentException("O monte deve ter exatamente 5 cartas");
 		}
 		this.cartas = cartas;
-		this.cartasTrocadas = new ArrayList<Carta>();
 	}
 	
-	public List<Carta> trocar(List<Carta> cartas) {
-		List<Carta> novasCartas = new ArrayList<Carta>();
-		for (Carta carta : cartas) {
-			novasCartas.add(trocar(carta));
-		}
-		return novasCartas;
-	}
-	
-	public Carta trocar(Carta carta) {
-		cartasTrocadas.add(carta);
-		return cartas.remove(0);
+	public List<Carta> trocar(int quantidadeCartas) {
+		return cartas.subList(0, quantidadeCartas);
 	}
 
 	public static Monte from(String... tuplas) {
