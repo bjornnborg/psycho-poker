@@ -47,5 +47,14 @@ public class AvaliadorSequenciaNumericaTest {
 		assertFalse(dadosAvaliacao.fazJogo());
 		assertEquals(0, dadosAvaliacao.getCartasJogo().size());
 	}
+	
+	@Test
+	public void naoDeveDeixarCairNaPegadinhaDaSubtracaoComPares() {
+		AvaliadorSequenciaNumerica sequencia = new AvaliadorSequenciaNumerica();
+		DadosAvaliacaoJogo dadosAvaliacao = sequencia.getDadosAvaliacao(new Mao(Carta.from("2D", "2H", "4C", "6C", "5C")));
+		assertEquals(SEQUENCIA_NUMERICA, dadosAvaliacao.getJogo());
+		assertFalse(dadosAvaliacao.fazJogo());
+		assertEquals(0, dadosAvaliacao.getCartasJogo().size());
+	}
 
 }

@@ -18,7 +18,7 @@ public class AvaliadorSequenciaNumerica implements AvaliadorMao {
 	@Override
 	public DadosAvaliacaoJogo getDadosAvaliacao(Mao mao) {
 		Map<ValorFace, List<Carta>> agrupadoPorValorFace = AgrupadorHelper.agruparPorValorFace(mao);
-		boolean matches = true;
+		boolean matches = false;
 		List<Carta> cartasJogo = new ArrayList<Carta>();
 		if (agrupadoPorValorFace.keySet().size() == 5) {
 			int gap = mao.getCartas().get(4).getValorFace().getPeso() - mao.getCartas().get(0).getValorFace().getPeso();
