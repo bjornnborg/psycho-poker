@@ -28,10 +28,7 @@ public class CollectionUtilsTest {
 		
 		List<List<String>> listasCombinadas = CollectionUtil.combinar(items, 0);
 		System.out.println(listasCombinadas);
-		assertEquals(1, listasCombinadas.size());
-		assertEquals("[]", listasCombinadas.get(0).toString());
-		assertEquals("[[]]", listasCombinadas.toString());
-		
+		assertEquals(0, listasCombinadas.size());
 	}	
 	
 	@Test
@@ -42,7 +39,7 @@ public class CollectionUtilsTest {
 		List<List<String>> listasCombinadas = CollectionUtil.combinar(items, 2);
 		System.out.println(listasCombinadas);
 		assertEquals(3, listasCombinadas.size());
-		assertEquals("[B, C]", listasCombinadas.get(0).toString());
+		assertEquals("[A, B]", listasCombinadas.get(0).toString());
 		
 	}
 	
@@ -54,22 +51,8 @@ public class CollectionUtilsTest {
 		List<List<String>> listasCombinadas = CollectionUtil.combinar(items, 1);
 		System.out.println(listasCombinadas);
 		assertEquals(3, listasCombinadas.size());
-		assertEquals("[B, C]", listasCombinadas.get(0).toString());
+		assertEquals("[[A], [B], [C]]", listasCombinadas.toString());
 		
-	}
-	
-	@Test
-	public void fuckTest() {
-		List<String> lista = new ArrayList<String>();
-		lista.add("A");lista.add("B");lista.add("C");
-
-		for(int j = 0; j < lista.size(); j++) {
-			for(int k = 0; k < lista.size(); k++) {
-				if (j != k) {
-					System.out.println(lista.get(k));
-				}
-			}
-		}			
 	}
 	
 }
