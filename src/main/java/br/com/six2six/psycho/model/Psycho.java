@@ -47,9 +47,7 @@ public class Psycho {
 					cartasCombinacao.clear();
 				}
 				cartasCombinacao.addAll(monte.trocar(quantidadeTrocas));
-				if (cartasCombinacao.size() > 5) {
-					throw new IllegalArgumentException("stop!");
-				}				
+				
 				Mao maoTemp = new Mao(cartasCombinacao);
 				DadosAvaliacaoJogo dadosAvaliacao = this.avaliarMao(maoTemp);
 				if (maiorJogo == null) {
@@ -59,7 +57,8 @@ public class Psycho {
 				}
 			}
 		}
-
+		
+		System.out.println(String.format("Mão %s - Monte: %s - Melhor jogo: %s - Cartas: %s", mao, monte, maiorJogo.getJogo(), maiorJogo.getCartasJogo()));
 		return maiorJogo;
 	}
 
