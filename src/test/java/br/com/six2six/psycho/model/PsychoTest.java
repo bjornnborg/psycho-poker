@@ -2,9 +2,12 @@ package br.com.six2six.psycho.model;
 
 import static br.com.six2six.psycho.model.Naipe.Ouros;
 import static br.com.six2six.psycho.model.ValorFace.As;
+import static br.com.six2six.psycho.model.ValorFace.Rei;
+import static br.com.six2six.psycho.model.ValorFace.Valete;
 import static br.com.six2six.psycho.model.ValorFace.Nove;
 import static br.com.six2six.psycho.model.mao.Jogo.PAR;
 import static br.com.six2six.psycho.model.mao.Jogo.MAIOR_CARTA;
+import static br.com.six2six.psycho.model.mao.Jogo.DOIS_PARES;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -39,6 +42,17 @@ public class PsychoTest {
 		assertEquals(Nove, maiorJogo.getCartasJogo().get(1).getValorFace());
 	}	
 	
-//	Mão: 6C 9C 8C 2D 7C Monte: 2H TC 4C 9S AH Melhor Jogo: one-pair (1 par)
-
+	@Test
+	public void descobrirMelhorComoDoisPares() {
+		Mao mao = Mao.from("AH 2C 9S AD 3C"); 
+		Monte monte = Monte.from("QH KS JS JD KD");
+		
+		DadosAvaliacaoJogo maiorJogo = new Psycho().descobrirMaiorJogo(mao, monte);
+		assertEquals(DOIS_PARES, maiorJogo.getJogo());
+		assertTrue(maiorJogo.fazJogo());
+		assertEquals(4, maiorJogo.getCartasJogo().size());
+		assertEquals(Valete, maiorJogo.getCartasJogo().get(0).getValorFace());
+		assertEquals(Rei, maiorJogo.getCartasJogo().get(2).getValorFace());
+	}
+	
 }
