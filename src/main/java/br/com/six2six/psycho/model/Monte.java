@@ -29,6 +29,10 @@ public class Monte {
 		return new Monte(cartas);
 	}
 	
+	public static Monte from(String tuplasComEspacos) {
+		return Monte.from(tuplasComEspacos.split("\\s"));
+	}	
+	
 	@Override
 	public String toString() {
 		return cartas.toString();

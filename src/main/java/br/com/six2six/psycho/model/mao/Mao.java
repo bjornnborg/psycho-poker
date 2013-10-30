@@ -28,6 +28,10 @@ public class Mao {
 		return new Mao(cartas);
 	}
 	
+	public static Mao from(String tuplasComEspacos) {
+		return Mao.from(tuplasComEspacos.split("\\s"));
+	}	
+	
 	@Override
 	public String toString() {
 		return cartas.toString();
