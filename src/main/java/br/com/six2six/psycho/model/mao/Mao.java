@@ -1,5 +1,6 @@
 package br.com.six2six.psycho.model.mao;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -12,8 +13,24 @@ public class Mao {
 	private List<Carta> cartas;
 	
 	public Mao(List<Carta> cartas) {
+		if (cartas.size() != 5) {
+			throw new IllegalArgumentException("A mão deve ter exatamente 5 cartas");
+		}
 		this.cartas = cartas;
 		Collections.sort(cartas);
+	}
+	
+	public static Mao from(String... tuplas) {
+		List<Carta> cartas = new ArrayList<Carta>();
+		for (String tupla : tuplas) {
+			cartas.add(Carta.from(tupla));
+		}
+		return new Mao(cartas);
+	}
+	
+	@Override
+	public String toString() {
+		return cartas.toString();
 	}
 	
 	
