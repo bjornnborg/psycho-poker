@@ -76,4 +76,17 @@ public class DadosAvaliacaoJogo implements Comparable<DadosAvaliacaoJogo> {
 		return Rei == cartas.get(cartas.size() - 2).getValorFace();
 	}
 	
+	@Override
+	public String toString() {
+		return String.format("%s faz? %s cartas: %s", jogo, fazJogo, cartasJogo);
+	}
+	
+	public boolean maiorQue(DadosAvaliacaoJogo outroJogo) {
+		return this.compareTo(outroJogo) > 0;
+	}
+	
+	public boolean menorQue(DadosAvaliacaoJogo outroJogo) {
+		return this.compareTo(outroJogo) < 0;
+	}	
+	
 }
