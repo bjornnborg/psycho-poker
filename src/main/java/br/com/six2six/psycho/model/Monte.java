@@ -29,5 +29,10 @@ public class Monte {
 		return new Monte(cartas);
 	}
 	
+	@Override
+	public String toString() {
+		return cartas.toString();
+	}
+	
 	
 }
