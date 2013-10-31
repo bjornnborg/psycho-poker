@@ -12,6 +12,8 @@ import static br.com.six2six.psycho.model.mao.Jogo.MAIOR_CARTA;
 import static br.com.six2six.psycho.model.mao.Jogo.DOIS_PARES;
 import static br.com.six2six.psycho.model.mao.Jogo.TRINCA;
 import static br.com.six2six.psycho.model.mao.Jogo.SEQUENCIA_NUMERICA;
+import static br.com.six2six.psycho.model.mao.Jogo.SEQUENCIA_NAIPE;
+import static br.com.six2six.psycho.model.Naipe.Copas;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -82,6 +84,18 @@ public class PsychoTest {
 		assertEquals(5, maiorJogo.getCartasJogo().size());
 		assertEquals(As, maiorJogo.getCartasJogo().get(0).getValorFace());
 		assertEquals(Cinco, maiorJogo.getCartasJogo().get(maiorJogo.getCartasJogo().size()-1).getValorFace());
+	}
+	
+	@Test
+	public void descobrirMelhorJogoComoSequenciaNaipe() {
+		Mao mao = Mao.from("2H AD 5H AC 7H"); 
+		Monte monte = Monte.from("AH 6H 9H 4H 3C");
+		
+		DadosAvaliacaoJogo maiorJogo = new Psycho().descobrirMaiorJogo(mao, monte);
+		assertEquals(SEQUENCIA_NAIPE, maiorJogo.getJogo());
+		assertTrue(maiorJogo.fazJogo());
+		assertEquals(5, maiorJogo.getCartasJogo().size());
+		assertEquals(Copas, maiorJogo.getCartasJogo().get(0).getNaipe());
 	}
 	
 }
