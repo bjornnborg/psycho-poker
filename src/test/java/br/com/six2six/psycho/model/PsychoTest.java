@@ -12,8 +12,10 @@ import static br.com.six2six.psycho.model.mao.Jogo.MAIOR_CARTA;
 import static br.com.six2six.psycho.model.mao.Jogo.DOIS_PARES;
 import static br.com.six2six.psycho.model.mao.Jogo.TRINCA;
 import static br.com.six2six.psycho.model.mao.Jogo.SEQUENCIA_NUMERICA;
+import static br.com.six2six.psycho.model.mao.Jogo.SEQUENCIA_NUMERICA_NAIPE;
 import static br.com.six2six.psycho.model.mao.Jogo.SEQUENCIA_NAIPE;
 import static br.com.six2six.psycho.model.mao.Jogo.FULL_HOUSE;
+import static br.com.six2six.psycho.model.mao.Jogo.FOUR;
 import static br.com.six2six.psycho.model.Naipe.Copas;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -106,6 +108,28 @@ public class PsychoTest {
 		
 		DadosAvaliacaoJogo maiorJogo = new Psycho().descobrirMaiorJogo(mao, monte);
 		assertEquals(FULL_HOUSE, maiorJogo.getJogo());
+		assertTrue(maiorJogo.fazJogo());
+		assertEquals(5, maiorJogo.getCartasJogo().size());
+	}
+	
+	@Test
+	public void descobrirMelhorJogoComoFour() {
+		Mao mao = Mao.from("2H 2S 3H 3S 3C"); 
+		Monte monte = Monte.from("2D 3D 6C 9C TH");
+		
+		DadosAvaliacaoJogo maiorJogo = new Psycho().descobrirMaiorJogo(mao, monte);
+		assertEquals(FOUR, maiorJogo.getJogo());
+		assertTrue(maiorJogo.fazJogo());
+		assertEquals(4, maiorJogo.getCartasJogo().size());
+	}
+	
+	@Test
+	public void descobrirMelhorSequenciaNumericaNaipe() {
+		Mao mao = Mao.from("TH JH QC QD QS"); 
+		Monte monte = Monte.from("QH KH AH 2S 6S");
+		
+		DadosAvaliacaoJogo maiorJogo = new Psycho().descobrirMaiorJogo(mao, monte);
+		assertEquals(SEQUENCIA_NUMERICA_NAIPE, maiorJogo.getJogo());
 		assertTrue(maiorJogo.fazJogo());
 		assertEquals(5, maiorJogo.getCartasJogo().size());
 	}
