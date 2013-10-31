@@ -2,12 +2,14 @@ package br.com.six2six.psycho.model;
 
 import static br.com.six2six.psycho.model.Naipe.Ouros;
 import static br.com.six2six.psycho.model.ValorFace.As;
+import static br.com.six2six.psycho.model.ValorFace.Dois;
 import static br.com.six2six.psycho.model.ValorFace.Rei;
 import static br.com.six2six.psycho.model.ValorFace.Valete;
 import static br.com.six2six.psycho.model.ValorFace.Nove;
 import static br.com.six2six.psycho.model.mao.Jogo.PAR;
 import static br.com.six2six.psycho.model.mao.Jogo.MAIOR_CARTA;
 import static br.com.six2six.psycho.model.mao.Jogo.DOIS_PARES;
+import static br.com.six2six.psycho.model.mao.Jogo.TRINCA;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -43,7 +45,7 @@ public class PsychoTest {
 	}	
 	
 	@Test
-	public void descobrirMelhorComoDoisPares() {
+	public void descobrirMelhorJogoComoDoisPares() {
 		Mao mao = Mao.from("AH 2C 9S AD 3C"); 
 		Monte monte = Monte.from("QH KS JS JD KD");
 		
@@ -54,5 +56,17 @@ public class PsychoTest {
 		assertEquals(Valete, maiorJogo.getCartasJogo().get(0).getValorFace());
 		assertEquals(Rei, maiorJogo.getCartasJogo().get(2).getValorFace());
 	}
+	
+	@Test
+	public void descobrirMelhorJogoComoTrinca() {
+		Mao mao = Mao.from("KS AH 2H 3C 4H"); 
+		Monte monte = Monte.from("KC 2C TC 2D AS");
+		
+		DadosAvaliacaoJogo maiorJogo = new Psycho().descobrirMaiorJogo(mao, monte);
+		assertEquals(TRINCA, maiorJogo.getJogo());
+		assertTrue(maiorJogo.fazJogo());
+		assertEquals(3, maiorJogo.getCartasJogo().size());
+		assertEquals(Dois, maiorJogo.getCartasJogo().get(0).getValorFace());
+	}	
 	
 }
