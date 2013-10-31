@@ -6,10 +6,12 @@ import static br.com.six2six.psycho.model.ValorFace.Dois;
 import static br.com.six2six.psycho.model.ValorFace.Rei;
 import static br.com.six2six.psycho.model.ValorFace.Valete;
 import static br.com.six2six.psycho.model.ValorFace.Nove;
+import static br.com.six2six.psycho.model.ValorFace.Cinco;
 import static br.com.six2six.psycho.model.mao.Jogo.PAR;
 import static br.com.six2six.psycho.model.mao.Jogo.MAIOR_CARTA;
 import static br.com.six2six.psycho.model.mao.Jogo.DOIS_PARES;
 import static br.com.six2six.psycho.model.mao.Jogo.TRINCA;
+import static br.com.six2six.psycho.model.mao.Jogo.SEQUENCIA_NUMERICA;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -67,6 +69,19 @@ public class PsychoTest {
 		assertTrue(maiorJogo.fazJogo());
 		assertEquals(3, maiorJogo.getCartasJogo().size());
 		assertEquals(Dois, maiorJogo.getCartasJogo().get(0).getValorFace());
-	}	
+	}
+	
+	@Test
+	public void descobrirMelhorJogoComoSequenciaNumerica() {
+		Mao mao = Mao.from("AC 2D 9C 3S KD"); 
+		Monte monte = Monte.from("5S 4D KS AS 4C");
+		
+		DadosAvaliacaoJogo maiorJogo = new Psycho().descobrirMaiorJogo(mao, monte);
+		assertEquals(SEQUENCIA_NUMERICA, maiorJogo.getJogo());
+		assertTrue(maiorJogo.fazJogo());
+		assertEquals(5, maiorJogo.getCartasJogo().size());
+		assertEquals(As, maiorJogo.getCartasJogo().get(0).getValorFace());
+		assertEquals(Cinco, maiorJogo.getCartasJogo().get(maiorJogo.getCartasJogo().size()-1).getValorFace());
+	}
 	
 }
