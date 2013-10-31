@@ -20,10 +20,12 @@ public class AvaliadorFullHouse implements AvaliadorMao {
 		boolean matches = false;
 		List<Carta> cartasJogo = new ArrayList<Carta>();
 		
-		for(ValorFace valor : agrupadoPorValorFace.keySet()) {
-			if (agrupadoPorValorFace.get(valor).size() == 3) {
-				matches = true;
-				break;
+		if (agrupadoPorValorFace.keySet().size() == 2) {
+			for(ValorFace valor : agrupadoPorValorFace.keySet()) {
+				if (agrupadoPorValorFace.get(valor).size() == 3) {
+					matches = true;
+					break;
+				}
 			}
 		}
 		

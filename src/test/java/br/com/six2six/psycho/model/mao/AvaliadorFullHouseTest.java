@@ -37,6 +37,15 @@ public class AvaliadorFullHouseTest {
 		assertEquals(FULL_HOUSE, dadosAvaliacao.getJogo());
 		assertFalse(dadosAvaliacao.fazJogo());
 		assertEquals(0, dadosAvaliacao.getCartasJogo().size());
+	}
+	
+	@Test
+	public void naoDeveIdentificarTrincaComoFullHand() {
+		AvaliadorFullHouse fullHouse = new AvaliadorFullHouse();
+		DadosAvaliacaoJogo dadosAvaliacao = fullHouse.getDadosAvaliacao(new Mao(Carta.from("3S", "3D", "3C", "8H", "JD")));
+		assertEquals(FULL_HOUSE, dadosAvaliacao.getJogo());
+		assertFalse(dadosAvaliacao.fazJogo());
+		assertEquals(0, dadosAvaliacao.getCartasJogo().size());
 	}	
 
 }
