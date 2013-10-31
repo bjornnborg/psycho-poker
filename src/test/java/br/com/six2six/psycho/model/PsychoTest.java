@@ -13,6 +13,7 @@ import static br.com.six2six.psycho.model.mao.Jogo.DOIS_PARES;
 import static br.com.six2six.psycho.model.mao.Jogo.TRINCA;
 import static br.com.six2six.psycho.model.mao.Jogo.SEQUENCIA_NUMERICA;
 import static br.com.six2six.psycho.model.mao.Jogo.SEQUENCIA_NAIPE;
+import static br.com.six2six.psycho.model.mao.Jogo.FULL_HOUSE;
 import static br.com.six2six.psycho.model.Naipe.Copas;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -96,6 +97,17 @@ public class PsychoTest {
 		assertTrue(maiorJogo.fazJogo());
 		assertEquals(5, maiorJogo.getCartasJogo().size());
 		assertEquals(Copas, maiorJogo.getCartasJogo().get(0).getNaipe());
+	}
+	
+	@Test
+	public void descobrirMelhorJogoComoFullHouse() {
+		Mao mao = Mao.from("2H 2S 3H 3S 3C"); 
+		Monte monte = Monte.from("2D 9C 3D 6C TH");
+		
+		DadosAvaliacaoJogo maiorJogo = new Psycho().descobrirMaiorJogo(mao, monte);
+		assertEquals(FULL_HOUSE, maiorJogo.getJogo());
+		assertTrue(maiorJogo.fazJogo());
+		assertEquals(5, maiorJogo.getCartasJogo().size());
 	}
 	
 }
