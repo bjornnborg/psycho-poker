@@ -1,6 +1,8 @@
 package br.com.six2six.psycho.model;
 
+
 import static br.com.six2six.psycho.model.ValorFace.As;
+import static br.com.six2six.psycho.model.ValorFace.Dois;
 import static br.com.six2six.psycho.model.ValorFace.Rei;
 import static br.com.six2six.psycho.model.mao.Jogo.SEQUENCIA_NUMERICA;
 import static br.com.six2six.psycho.model.mao.Jogo.SEQUENCIA_NUMERICA_NAIPE;
@@ -23,10 +25,23 @@ public class DadosAvaliacaoJogo implements Comparable<DadosAvaliacaoJogo> {
 		this.fazJogo = fazJogo;
 		this.cartasJogo = cartasJogo;
 		if (this.cartasJogo != null) {
-			Collections.sort(this.cartasJogo);
+			this.ordenarCartas(this.cartasJogo);
 		}
 	}
 	
+	private void ordenarCartas(List<Carta> cartasJogo) {
+		Collections.sort(this.cartasJogo);
+		if (algumaSequencia()) {
+			if (Dois == cartasJogo.get(0).getValorFace() && As == cartasJogo.get(cartasJogo.size()-1).getValorFace()) {
+				cartasJogo.add(0, cartasJogo.get(cartasJogo.size()-1));
+				cartasJogo.remove(cartasJogo.size()-1);
+			}
+		}
+		
+	}
+	private boolean algumaSequencia() {
+		return (SEQUENCIA_NUMERICA == this.jogo || SEQUENCIA_NUMERICA_NAIPE == this.jogo) && this.fazJogo;
+	}
 	public boolean fazJogo() {
 		return isFazJogo();
 	}
