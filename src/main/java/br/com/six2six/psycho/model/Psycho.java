@@ -58,7 +58,7 @@ public class Psycho {
 			}
 		}
 		
-		System.out.println(String.format("Mão %s - Monte: %s - Melhor jogo: %s - Cartas: %s", mao, monte, maiorJogo.getJogo(), maiorJogo.getCartasJogo()));
+		System.out.println(String.format("Mão %s - Monte: %s - Cartas do melhor jogo: %s - Jogo: %s", mao, monte, maiorJogo.getCartasJogo(), maiorJogo.getJogo()));
 		return maiorJogo;
 	}
 
