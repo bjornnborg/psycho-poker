@@ -3,7 +3,6 @@ package br.com.six2six.psycho.model;
 
 import static br.com.six2six.psycho.model.ValorFace.As;
 import static br.com.six2six.psycho.model.ValorFace.Dois;
-import static br.com.six2six.psycho.model.ValorFace.Rei;
 import static br.com.six2six.psycho.model.mao.Jogo.SEQUENCIA_NUMERICA;
 import static br.com.six2six.psycho.model.mao.Jogo.SEQUENCIA_NUMERICA_NAIPE;
 
@@ -77,20 +76,16 @@ public class DadosAvaliacaoJogo implements Comparable<DadosAvaliacaoJogo> {
 	}
 	
 	private int ajustarPesoAs(List<Carta> cartas, int total) {
-		if (ultimaCartaAs(cartas) && !penultimaCartaRei(cartas)) {
+		if (primeiraCartaAs(cartas)) {
 			return total - 13;
 		}
 		return total;
 	}
 	
-	private boolean ultimaCartaAs(List<Carta> cartas) {
-		return As == cartas.get(cartas.size() - 1).getValorFace();
+	private boolean primeiraCartaAs(List<Carta> cartas) {
+		return As == cartas.get(0).getValorFace();
 	}
-	
-	private boolean penultimaCartaRei(List<Carta> cartas) {
-		return Rei == cartas.get(cartas.size() - 2).getValorFace();
-	}
-	
+
 	@Override
 	public String toString() {
 		return String.format("%s faz? %s cartas: %s", jogo, fazJogo, cartasJogo);
