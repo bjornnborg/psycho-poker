@@ -19,10 +19,11 @@ public class AvaliadorSequenciaNumerica implements AvaliadorMao {
 			fazSequencia = diferencaUltimaCartaPrimeiraIndicaSequencia(mao);
 			
 			if (!fazSequencia && mao.temAsComoMaiorCarta()) {
-				if (diferencaPenultimaCartaPrimeiraIndicaSequencia(mao)) {
-					int pesoProvisorioAs = 1;
-					fazSequencia = (mao.cartas().menor().getValorFace().getPeso() - pesoProvisorioAs) == 1;
-				}
+				fazSequencia = diferencaPenultimaCartaPrimeiraIndicaSequencia(mao);
+				 if (diferencaPenultimaCartaPrimeiraIndicaSequencia(mao)) {
+					 int pesoProvisorioAs = 1;
+					 fazSequencia = (mao.cartas().menor().getValorFace().getPeso() - pesoProvisorioAs) == 1;
+				 }
 			}
 			
 		}
@@ -31,6 +32,16 @@ public class AvaliadorSequenciaNumerica implements AvaliadorMao {
 		}
 		return new DadosAvaliacaoJogo(SEQUENCIA_NUMERICA, fazSequencia, cartasJogo);
 	}
+	
+	@Override
+	public int getPeso() {
+		return 5;
+	}
+
+	@Override
+	public int compareTo(AvaliadorMao o) {
+		return this.getPeso() - o.getPeso();
+	}	
 	
 	private boolean diferencaUltimaCartaPrimeiraIndicaSequencia(Mao mao) {
 		return calcularGap(mao, mao.cartas().todas().size()-1) == (mao.cartas().todas().size() - 1);
