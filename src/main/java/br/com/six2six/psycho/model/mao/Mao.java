@@ -1,5 +1,7 @@
 package br.com.six2six.psycho.model.mao;
 
+import static br.com.six2six.psycho.model.ValorFace.As;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -35,6 +37,10 @@ public class Mao {
 	@Override
 	public String toString() {
 		return cartas.toString();
+	}
+	
+	public boolean temAsComoMaiorCarta() {
+		return As == this.getCartas().get(4).getValorFace();
 	}
 	
 	

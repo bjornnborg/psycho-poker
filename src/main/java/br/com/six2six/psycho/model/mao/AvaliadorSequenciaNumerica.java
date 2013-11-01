@@ -1,6 +1,5 @@
 package br.com.six2six.psycho.model.mao;
 
-import static br.com.six2six.psycho.model.ValorFace.As;
 import static br.com.six2six.psycho.model.mao.Jogo.SEQUENCIA_NUMERICA;
 
 import java.util.ArrayList;
@@ -17,28 +16,40 @@ public class AvaliadorSequenciaNumerica implements AvaliadorMao {
 
 	@Override
 	public DadosAvaliacaoJogo getDadosAvaliacao(Mao mao) {
-		Map<ValorFace, List<Carta>> agrupadoPorValorFace = AgrupadorHelper.agruparPorValorFace(mao);
-		boolean matches = false;
+		boolean fazSequencia = false;
 		List<Carta> cartasJogo = new ArrayList<Carta>();
-		if (agrupadoPorValorFace.keySet().size() == 5) {
-			int gap = mao.getCartas().get(4).getValorFace().getPeso() - mao.getCartas().get(0).getValorFace().getPeso();
-			matches = gap == (mao.getCartas().size() - 1);
+		if (possuiCincoCartasDistintas(mao)) {
+			fazSequencia = diferencaUltimaCartaPrimeiraIndicaSequencia(mao);
 			
-			if (!matches && As == mao.getCartas().get(4).getValorFace()) {
-				gap = mao.getCartas().get(3).getValorFace().getPeso() - mao.getCartas().get(0).getValorFace().getPeso();
-				matches = gap == (mao.getCartas().size() - 2);
-				
-				if (matches) {
+			if (!fazSequencia && mao.temAsComoMaiorCarta()) {
+				if (diferencaPenultimaCartaPrimeiraIndicaSequencia(mao)) {
 					int pesoProvisorioAs = 1;
-					matches = (mao.getCartas().get(0).getValorFace().getPeso() - pesoProvisorioAs) == 1;
+					fazSequencia = (mao.getCartas().get(0).getValorFace().getPeso() - pesoProvisorioAs) == 1;
 				}
 			}
 			
 		}
-		if (matches) {
+		if (fazSequencia) {
 			cartasJogo = mao.getCartas();
 		}
-		return new DadosAvaliacaoJogo(SEQUENCIA_NUMERICA, matches, cartasJogo);
+		return new DadosAvaliacaoJogo(SEQUENCIA_NUMERICA, fazSequencia, cartasJogo);
+	}
+	
+	private boolean possuiCincoCartasDistintas(Mao mao) {
+		Map<ValorFace, List<Carta>> agrupadoPorValorFace = AgrupadorHelper.agruparPorValorFace(mao);
+		return agrupadoPorValorFace.keySet().size() == 5;
+	}
+	
+	private boolean diferencaUltimaCartaPrimeiraIndicaSequencia(Mao mao) {
+		return calcularGap(mao, mao.getCartas().size()-1) == (mao.getCartas().size() - 1);
+	}
+	
+	private boolean diferencaPenultimaCartaPrimeiraIndicaSequencia(Mao mao) {
+		return calcularGap(mao, mao.getCartas().size()-2) == (mao.getCartas().size() - 2);
+	}	
+	
+	private int calcularGap(Mao mao, int indiceUltimaCarta) {
+		return mao.getCartas().get(indiceUltimaCarta).getValorFace().getPeso() - mao.getCartas().get(0).getValorFace().getPeso();
 	}
 	
 
