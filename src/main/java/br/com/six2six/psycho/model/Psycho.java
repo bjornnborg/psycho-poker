@@ -51,9 +51,7 @@ public class Psycho {
 				
 				Mao maoTemp = new Mao(cartasCombinacao);
 				DadosAvaliacaoJogo dadosAvaliacao = this.avaliarMao(maoTemp);
-				if (maiorJogo == null) {
-					maiorJogo = dadosAvaliacao;
-				} else if (dadosAvaliacao.maiorQue(maiorJogo)) {
+				if (maiorJogo == null || dadosAvaliacao.maiorQue(maiorJogo)) {
 					maiorJogo = dadosAvaliacao;
 				}
 			}
@@ -63,19 +61,15 @@ public class Psycho {
 		return maiorJogo;
 	}
 
-
-
 	private DadosAvaliacaoJogo avaliarMao(Mao mao) {
-		List<DadosAvaliacaoJogo> jogos = new ArrayList<DadosAvaliacaoJogo>();
+		DadosAvaliacaoJogo maiorJogo = null;
 		for(AvaliadorMao avaliador : avalidadoresMao) {
 			DadosAvaliacaoJogo dadosAvaliacao = avaliador.getDadosAvaliacao(mao);
 			if (dadosAvaliacao.fazJogo()) {
-				jogos.add(dadosAvaliacao);
-				break;
+				maiorJogo = dadosAvaliacao;
 			}
 		}
-		Collections.sort(jogos);
-		return jogos.get(jogos.size()-1);
+		return maiorJogo;
 	}
 	
 }
