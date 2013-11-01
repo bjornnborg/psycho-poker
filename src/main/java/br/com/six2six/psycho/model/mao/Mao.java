@@ -112,6 +112,10 @@ public class Mao {
 			}
 			return cartas;
 		}
+
+		public Carta maior() {
+			return cartas.get(cartas.size() - 1);
+		}
 	
 	}
 	
