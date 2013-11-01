@@ -21,27 +21,27 @@ public class AvaliadorSequenciaNumerica implements AvaliadorMao {
 			if (!fazSequencia && mao.temAsComoMaiorCarta()) {
 				if (diferencaPenultimaCartaPrimeiraIndicaSequencia(mao)) {
 					int pesoProvisorioAs = 1;
-					fazSequencia = (mao.getCartas().get(0).getValorFace().getPeso() - pesoProvisorioAs) == 1;
+					fazSequencia = (mao.cartas().todas().get(0).getValorFace().getPeso() - pesoProvisorioAs) == 1;
 				}
 			}
 			
 		}
 		if (fazSequencia) {
-			cartasJogo = mao.getCartas();
+			cartasJogo = mao.cartas().todas();
 		}
 		return new DadosAvaliacaoJogo(SEQUENCIA_NUMERICA, fazSequencia, cartasJogo);
 	}
 	
 	private boolean diferencaUltimaCartaPrimeiraIndicaSequencia(Mao mao) {
-		return calcularGap(mao, mao.getCartas().size()-1) == (mao.getCartas().size() - 1);
+		return calcularGap(mao, mao.cartas().todas().size()-1) == (mao.cartas().todas().size() - 1);
 	}
 	
 	private boolean diferencaPenultimaCartaPrimeiraIndicaSequencia(Mao mao) {
-		return calcularGap(mao, mao.getCartas().size()-2) == (mao.getCartas().size() - 2);
+		return calcularGap(mao, mao.cartas().todas().size()-2) == (mao.cartas().todas().size() - 2);
 	}	
 	
 	private int calcularGap(Mao mao, int indiceUltimaCarta) {
-		return mao.getCartas().get(indiceUltimaCarta).getValorFace().getPeso() - mao.getCartas().get(0).getValorFace().getPeso();
+		return mao.cartas().todas().get(indiceUltimaCarta).getValorFace().getPeso() - mao.cartas().todas().get(0).getValorFace().getPeso();
 	}
 	
 

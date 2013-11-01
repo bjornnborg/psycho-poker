@@ -16,7 +16,7 @@ public class AvaliadorTrinca implements AvaliadorMao {
 
 	@Override
 	public DadosAvaliacaoJogo getDadosAvaliacao(Mao mao) {
-		Map<ValorFace, List<Carta>> agrupadoPorValorFace = AgrupadorHelper.agruparPorValorFace(mao);
+		Map<ValorFace, List<Carta>> agrupadoPorValorFace = AgrupadorHelper.agruparPorValorFace(mao.cartas().todas());
 		boolean matches = false;
 		List<Carta> cartasJogo = new ArrayList<Carta>();
 		if (agrupadoPorValorFace.keySet().size() == 3) {

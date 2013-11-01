@@ -22,7 +22,7 @@ public class AgrupadorHelperTest {
 
 	@Test
 	public void agruparPorValorFace() {
-		Map<ValorFace, List<Carta>> agruparPorValorFace = AgrupadorHelper.agruparPorValorFace(new Mao(Carta.from("AS", "8H", "5D", "8S", "AC")));
+		Map<ValorFace, List<Carta>> agruparPorValorFace = AgrupadorHelper.agruparPorValorFace(new Mao(Carta.from("AS", "8H", "5D", "8S", "AC")).cartas().todas());
 		assertEquals(3, agruparPorValorFace.keySet().size());
 		assertEquals(2, agruparPorValorFace.get(As).size());
 		assertEquals(2, agruparPorValorFace.get(Oito).size());
@@ -31,7 +31,7 @@ public class AgrupadorHelperTest {
 	
 	@Test
 	public void agruparPorValorNaipe() {
-		Map<Naipe, List<Carta>> agruparPorNaipe = AgrupadorHelper.agruparPorNaipe(new Mao(Carta.from("AS", "8D", "5D", "8S", "AC")));
+		Map<Naipe, List<Carta>> agruparPorNaipe = AgrupadorHelper.agruparPorNaipe(new Mao(Carta.from("AS", "8D", "5D", "8S", "AC")).cartas().todas());
 		assertEquals(3, agruparPorNaipe.keySet().size());
 		assertEquals(2, agruparPorNaipe.get(Ouros).size());
 		assertEquals(2, agruparPorNaipe.get(Espadas).size());

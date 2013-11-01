@@ -38,9 +38,9 @@ public class Psycho {
 		DadosAvaliacaoJogo maiorJogo = null;
 		
 		for(int quantidadeTrocas = 0; quantidadeTrocas <= 5; quantidadeTrocas++) {
-			List<List<Carta>> combinacoes = CollectionUtil.combinar(mao.getCartas(), 5 - quantidadeTrocas);
+			List<List<Carta>> combinacoes = CollectionUtil.combinar(mao.cartas().todas(), 5 - quantidadeTrocas);
 			if (combinacoes.size() == 0) {
-				combinacoes.add(new ArrayList<Carta>(mao.getCartas()));
+				combinacoes.add(new ArrayList<Carta>(mao.cartas().todas()));
 			}
 			for (List<Carta> cartasCombinacao : combinacoes) {
 				if (quantidadeTrocas == 5) {

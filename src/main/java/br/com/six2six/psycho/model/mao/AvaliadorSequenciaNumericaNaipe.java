@@ -19,7 +19,7 @@ public class AvaliadorSequenciaNumericaNaipe implements AvaliadorMao {
 		List<Carta> cartasJogo = new ArrayList<Carta>();
 		boolean matches = sequenciaNaipe.getDadosAvaliacao(mao).fazJogo() && sequenciaNumerica.getDadosAvaliacao(mao).fazJogo();
 		if (matches) {
-			cartasJogo = mao.getCartas();
+			cartasJogo = mao.cartas().todas();
 		}
 
 		return new DadosAvaliacaoJogo(SEQUENCIA_NUMERICA_NAIPE, matches, cartasJogo);

@@ -14,14 +14,10 @@ public class AvaliadorSequenciaNaipe implements AvaliadorMao {
 	@Override
 	public DadosAvaliacaoJogo getDadosAvaliacao(Mao mao) {
 		List<Carta> cartasJogo = new ArrayList<Carta>();
-		mao.possui(5).cartasDistintas();
-		
-		boolean matches = mao.possui().todasCartasMesmoNaipe();
+		boolean matches = mao.possui(5).cartasMesmoNaipe();
 		if (matches) {
-			cartasJogo = mao.getCartas();
+			cartasJogo = mao.cartas().todas();
 		}
 		return new DadosAvaliacaoJogo(SEQUENCIA_NAIPE, matches, cartasJogo);
 	}
-	
-
 }

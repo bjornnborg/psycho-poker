@@ -7,26 +7,22 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import lombok.Getter;
 import br.com.six2six.psycho.model.Carta;
 import br.com.six2six.psycho.model.Naipe;
 import br.com.six2six.psycho.model.ValorFace;
 import br.com.six2six.psycho.model.mao.util.AgrupadorHelper;
 
-@Getter
 public class Mao {
 
 	private List<Carta> cartas;
-	private Map<ValorFace, List<Carta>> cartasAgrupadasPorValor = null;
-	private Map<Naipe, List<Carta>> cartasAgrupadasPorNaipe = null;
+	private Agrupador agrupador;
 	
 	public Mao(List<Carta> cartas) {
 		if (cartas.size() != 5) throw new IllegalArgumentException("A mão deve ter exatamente 5 cartas");
-
 		this.cartas = cartas;
 		Collections.sort(cartas);
-		cartasAgrupadasPorValor = AgrupadorHelper.agruparPorValorFace(this);
-		cartasAgrupadasPorNaipe = AgrupadorHelper.agruparPorNaipe(this);
+		agrupador = new Agrupador();
+
 	}
 	
 	public static Mao from(String... tuplas) {
@@ -47,23 +43,15 @@ public class Mao {
 	}
 	
 	public boolean temAsComoMaiorCarta() {
-		return As == this.getCartas().get(4).getValorFace();
+		return As == this.cartas.get(4).getValorFace();
 	}
 	
 	public Estatisticas possui(int quantidade) {
 		return new Estatisticas(quantidade);
-	}
+	}	
 	
-	public Estatisticas possui() {
-		return new Estatisticas();
-	}
-	
-	public Map<ValorFace, List<Carta>> getCartasAgrupadasPorValor() {
-		return this.cartasAgrupadasPorValor;
-	}
-	
-	public Map<Naipe, List<Carta>> getCartasAgrupadasPorNaipe() {
-		return this.cartasAgrupadasPorNaipe;
+	public Agrupador cartas() {
+		return agrupador;
 	}
 	
 	public class Estatisticas {
@@ -73,15 +61,51 @@ public class Mao {
 			this.quantidade = quantidade;
 		}
 		
-		private Estatisticas() {}
-		
 		public boolean cartasDistintas() {
-			return cartasAgrupadasPorValor.keySet().size() == quantidade;
+			return agrupador.cartasAgrupadasPorValor.keySet().size() == quantidade;
 		}
 		
-		public boolean todasCartasMesmoNaipe() {
-			return cartasAgrupadasPorNaipe.keySet().size() == 1;
+		public boolean cartasMesmoNaipe() {
+			for (Naipe naipe : agrupador.cartasAgrupadasPorNaipe.keySet()) {
+				if (agrupador.cartasAgrupadasPorNaipe.get(naipe).size() == quantidade) {
+					return true;
+				}
+			}
+			return false;
+		}
+		
+		public boolean gruposDeValor() {
+			return agrupador.cartasAgrupadasPorValor.keySet().size() == quantidade;
 		}
 		
 	}
+	
+	public class Agrupador {
+		private Map<ValorFace, List<Carta>> cartasAgrupadasPorValor = null;
+		private Map<Naipe, List<Carta>> cartasAgrupadasPorNaipe = null;
+		
+		private Agrupador() {
+			cartasAgrupadasPorValor = AgrupadorHelper.agruparPorValorFace(Mao.this.cartas);
+			cartasAgrupadasPorNaipe = AgrupadorHelper.agruparPorNaipe(Mao.this.cartas);
+		}
+		
+		public List<Carta> todas() {
+			return Mao.this.cartas;
+		}
+		
+		public List<Carta> doGrupo(int quantidade) {
+			List<Carta> cartas = new ArrayList<Carta>();
+			for (ValorFace valor : cartasAgrupadasPorValor.keySet()) {
+				if (cartasAgrupadasPorValor.get(valor).size() == quantidade) {
+					cartas.addAll(cartasAgrupadasPorValor.get(valor));
+				}
+			}
+			return cartas;
+		}
+	
+	}
+	
+	public static int comQuantidade(int quantidade) {
+		return quantidade;
+	}	
 }

@@ -16,7 +16,7 @@ public class AvaliadorFullHouse implements AvaliadorMao {
 
 	@Override
 	public DadosAvaliacaoJogo getDadosAvaliacao(Mao mao) {
-		Map<ValorFace, List<Carta>> agrupadoPorValorFace = AgrupadorHelper.agruparPorValorFace(mao);
+		Map<ValorFace, List<Carta>> agrupadoPorValorFace = AgrupadorHelper.agruparPorValorFace(mao.cartas().todas());
 		boolean matches = false;
 		List<Carta> cartasJogo = new ArrayList<Carta>();
 		
@@ -30,7 +30,7 @@ public class AvaliadorFullHouse implements AvaliadorMao {
 		}
 		
 		if (matches) {
-			cartasJogo = mao.getCartas();
+			cartasJogo = mao.cartas().todas();
 		}
 		
 		return new DadosAvaliacaoJogo(FULL_HOUSE, matches, cartasJogo);

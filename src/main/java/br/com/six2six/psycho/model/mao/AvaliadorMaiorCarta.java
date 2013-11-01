@@ -16,11 +16,11 @@ public class AvaliadorMaiorCarta implements AvaliadorMao {
 	
 	@Override
 	public DadosAvaliacaoJogo getDadosAvaliacao(Mao mao) {
-		Map<ValorFace, List<Carta>> agrupadoPorValorFace = AgrupadorHelper.agruparPorValorFace(mao);
+		Map<ValorFace, List<Carta>> agrupadoPorValorFace = AgrupadorHelper.agruparPorValorFace(mao.cartas().todas());
 		boolean matches = agrupadoPorValorFace.keySet().size() == 5;
 		List<Carta> cartasJogo = new ArrayList<Carta>();
 		if (matches) {
-			cartasJogo.add(mao.getCartas().get(mao.getCartas().size()-1));
+			cartasJogo.add(mao.cartas().todas().get(mao.cartas().todas().size()-1));
 		}
 		
 		return new DadosAvaliacaoJogo(MAIOR_CARTA, matches, cartasJogo);
