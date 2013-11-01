@@ -21,9 +21,8 @@ public class Mao {
 	private Map<Naipe, List<Carta>> cartasAgrupadasPorNaipe = null;
 	
 	public Mao(List<Carta> cartas) {
-		if (cartas.size() != 5) {
-			throw new IllegalArgumentException("A mão deve ter exatamente 5 cartas");
-		}
+		if (cartas.size() != 5) throw new IllegalArgumentException("A mão deve ter exatamente 5 cartas");
+
 		this.cartas = cartas;
 		Collections.sort(cartas);
 		cartasAgrupadasPorValor = AgrupadorHelper.agruparPorValorFace(this);
@@ -51,9 +50,38 @@ public class Mao {
 		return As == this.getCartas().get(4).getValorFace();
 	}
 	
-	public boolean possuiCincoCartasDistintas() {
-		return this.cartasAgrupadasPorValor.keySet().size() == 5;
+	public Estatisticas possui(int quantidade) {
+		return new Estatisticas(quantidade);
 	}
 	
+	public Estatisticas possui() {
+		return new Estatisticas();
+	}
 	
+	public Map<ValorFace, List<Carta>> getCartasAgrupadasPorValor() {
+		return this.cartasAgrupadasPorValor;
+	}
+	
+	public Map<Naipe, List<Carta>> getCartasAgrupadasPorNaipe() {
+		return this.cartasAgrupadasPorNaipe;
+	}
+	
+	public class Estatisticas {
+		private int quantidade;
+
+		private Estatisticas(int quantidade) {
+			this.quantidade = quantidade;
+		}
+		
+		private Estatisticas() {}
+		
+		public boolean cartasDistintas() {
+			return cartasAgrupadasPorValor.keySet().size() == quantidade;
+		}
+		
+		public boolean todasCartasMesmoNaipe() {
+			return cartasAgrupadasPorNaipe.keySet().size() == 1;
+		}
+		
+	}
 }

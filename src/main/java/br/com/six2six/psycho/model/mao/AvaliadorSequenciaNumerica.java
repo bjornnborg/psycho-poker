@@ -15,7 +15,7 @@ public class AvaliadorSequenciaNumerica implements AvaliadorMao {
 	public DadosAvaliacaoJogo getDadosAvaliacao(Mao mao) {
 		boolean fazSequencia = false;
 		List<Carta> cartasJogo = new ArrayList<Carta>();
-		if (mao.possuiCincoCartasDistintas()) {
+		if (mao.possui(5).cartasDistintas()) {
 			fazSequencia = diferencaUltimaCartaPrimeiraIndicaSequencia(mao);
 			
 			if (!fazSequencia && mao.temAsComoMaiorCarta()) {
