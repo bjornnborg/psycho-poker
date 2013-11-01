@@ -74,6 +74,16 @@ public class Mao {
 			return false;
 		}
 		
+		public boolean cartasEmAlgumGrupo() {
+			for(ValorFace valor : agrupador.cartasAgrupadasPorValor.keySet()) {
+				if (agrupador.cartasAgrupadasPorValor.get(valor).size() == quantidade) {
+					return true;
+				}
+			}
+			return false;
+		}
+	
+		
 		public boolean gruposDeValor() {
 			return agrupador.cartasAgrupadasPorValor.keySet().size() == quantidade;
 		}
