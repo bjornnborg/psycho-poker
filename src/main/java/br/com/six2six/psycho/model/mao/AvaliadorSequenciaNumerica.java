@@ -21,7 +21,7 @@ public class AvaliadorSequenciaNumerica implements AvaliadorMao {
 			if (!fazSequencia && mao.temAsComoMaiorCarta()) {
 				if (diferencaPenultimaCartaPrimeiraIndicaSequencia(mao)) {
 					int pesoProvisorioAs = 1;
-					fazSequencia = (mao.cartas().todas().get(0).getValorFace().getPeso() - pesoProvisorioAs) == 1;
+					fazSequencia = (mao.cartas().menor().getValorFace().getPeso() - pesoProvisorioAs) == 1;
 				}
 			}
 			

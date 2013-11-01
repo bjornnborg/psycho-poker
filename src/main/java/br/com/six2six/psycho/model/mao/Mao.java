@@ -116,6 +116,10 @@ public class Mao {
 		public Carta maior() {
 			return cartas.get(cartas.size() - 1);
 		}
+
+		public Carta menor() {
+			return cartas.get(0);
+		}
 	
 	}
 	
