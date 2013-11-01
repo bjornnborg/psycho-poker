@@ -20,4 +20,14 @@ public class AvaliadorSequenciaNaipe implements AvaliadorMao {
 		}
 		return new DadosAvaliacaoJogo(SEQUENCIA_NAIPE, matches, cartasJogo);
 	}
+	
+	@Override
+	public int getPeso() {
+		return 6;
+	}
+
+	@Override
+	public int compareTo(AvaliadorMao o) {
+		return this.getPeso() - o.getPeso();
+	}	
 }

@@ -24,5 +24,14 @@ public class AvaliadorFour implements AvaliadorMao {
 		return new DadosAvaliacaoJogo(FOUR, matches, cartasJogo);
 	}
 	
+	@Override
+	public int getPeso() {
+		return 8;
+	}
+
+	@Override
+	public int compareTo(AvaliadorMao o) {
+		return this.getPeso() - o.getPeso();
+	}	
 
 }

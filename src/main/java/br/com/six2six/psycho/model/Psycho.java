@@ -30,6 +30,7 @@ public class Psycho {
 		this.avalidadoresMao.add(new AvaliadorFullHouse());
 		this.avalidadoresMao.add(new AvaliadorFour());
 		this.avalidadoresMao.add(new AvaliadorSequenciaNumericaNaipe());
+		Collections.sort(this.avalidadoresMao, Collections.reverseOrder());
 	}
 
 
@@ -70,6 +71,7 @@ public class Psycho {
 			DadosAvaliacaoJogo dadosAvaliacao = avaliador.getDadosAvaliacao(mao);
 			if (dadosAvaliacao.fazJogo()) {
 				jogos.add(dadosAvaliacao);
+				break;
 			}
 		}
 		Collections.sort(jogos);

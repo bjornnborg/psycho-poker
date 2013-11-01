@@ -28,5 +28,14 @@ public class AvaliadorFullHouse implements AvaliadorMao {
 		return new DadosAvaliacaoJogo(FULL_HOUSE, matches, cartasJogo);
 	}
 	
+	@Override
+	public int getPeso() {
+		return 7;
+	}
 
+	@Override
+	public int compareTo(AvaliadorMao o) {
+		return this.getPeso() - o.getPeso();
+	}
+	
 }

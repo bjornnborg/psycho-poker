@@ -23,5 +23,15 @@ public class AvaliadorDoisPares implements AvaliadorMao {
 		}
 		return new DadosAvaliacaoJogo(DOIS_PARES, matches, cartasJogo);
 	}
+	
+	@Override
+	public int getPeso() {
+		return 3;
+	}
+
+	@Override
+	public int compareTo(AvaliadorMao o) {
+		return this.getPeso() - o.getPeso();
+	}	
 
 }

@@ -23,4 +23,14 @@ public class AvaliadorTrinca implements AvaliadorMao {
 		return new DadosAvaliacaoJogo(TRINCA, matches, cartasJogo);
 	}
 
+	@Override
+	public int getPeso() {
+		return 4;
+	}
+
+	@Override
+	public int compareTo(AvaliadorMao o) {
+		return this.getPeso() - o.getPeso();
+	}
+
 }

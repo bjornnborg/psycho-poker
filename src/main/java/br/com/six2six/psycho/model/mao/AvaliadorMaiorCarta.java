@@ -22,6 +22,14 @@ public class AvaliadorMaiorCarta implements AvaliadorMao {
 		return new DadosAvaliacaoJogo(MAIOR_CARTA, matches, cartasJogo);
 	}
 
-	
+	@Override
+	public int getPeso() {
+		return 1;
+	}
+
+	@Override
+	public int compareTo(AvaliadorMao o) {
+		return this.getPeso() - o.getPeso();
+	}	
 
 }
