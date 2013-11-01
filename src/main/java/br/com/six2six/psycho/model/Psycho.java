@@ -52,7 +52,7 @@ public class Psycho {
 				DadosAvaliacaoJogo dadosAvaliacao = this.avaliarMao(maoTemp);
 				if (maiorJogo == null) {
 					maiorJogo = dadosAvaliacao;
-				} else if (dadosAvaliacao.compareTo(maiorJogo) > 0) {
+				} else if (dadosAvaliacao.maiorQue(maiorJogo)) {
 					maiorJogo = dadosAvaliacao;
 				}
 			}
