@@ -28,17 +28,17 @@ public enum ValorFace {
 	
 	private static Map<String, ValorFace> valoresFace = new HashMap<String, ValorFace>();
 	
-	private String valorFace;
+	private String valor;
 	private int peso;
 	
 	static {
 		for(ValorFace carta : ValorFace.values()) {
-			valoresFace.put(carta.getValorFace(), carta);
+			valoresFace.put(carta.getValor(), carta);
 		}
 	}
 	
 	private ValorFace(String valorFace, int peso) {
-		this.valorFace = valorFace;
+		this.valor = valorFace;
 		this.peso = peso;
 	}
 	

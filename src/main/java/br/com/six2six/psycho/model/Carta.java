@@ -27,7 +27,7 @@ public class Carta implements Comparable<Carta> {
 	
 	@Override
 	public String toString() {
-		return String.format("%s %s", valorFace.getValorFace(), naipe.getSimbolo());
+		return String.format("%s %s", valorFace.getValor(), naipe.getSimbolo());
 	}
 	
 	@Override
